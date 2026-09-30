@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Home } from 'lucide-react';
+import { ChevronRight, Home, Camera } from 'lucide-react';
 import { PageId } from '../types';
 import { ImageAsset } from '../data/companyImages';
 
@@ -25,28 +25,33 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   onCtaClick
 }) => {
   return (
-    <div className="relative overflow-hidden bg-slate-950 text-white min-h-[300px] sm:min-h-[360px] flex items-center border-b border-slate-800">
-      {/* Background Real Company Image with Object Cover */}
+    <div className="relative overflow-hidden bg-slate-950 text-white min-h-[340px] sm:min-h-[400px] flex items-center border-b border-slate-800">
+      {/* Background Real Company Image with Object Cover - Clearly Visible & High Resolution */}
       <img
-        src={image.cdnUrl}
+        src={image.localPath}
         alt={image.alt}
         onError={(e) => {
-          // Fallback to local downloaded asset if remote ever fails
           const target = e.currentTarget;
-          if (target.src !== window.location.origin + image.localPath) {
-            target.src = image.localPath;
+          if (target.src !== image.cdnUrl) {
+            target.src = image.cdnUrl;
           }
         }}
-        className="absolute inset-0 w-full h-full object-cover object-center scale-100 transition-transform duration-700 hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover object-center scale-100 transition-transform duration-700 hover:scale-105 filter brightness-100 contrast-105"
       />
 
-      {/* Dark Transparent Overlays ensuring maximum legibility while displaying genuine workshop environment */}
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-900/70" />
-      <div className="absolute inset-0 bg-slate-950/40 mix-blend-multiply" />
+      {/* Gentle directional scrim: preserves text readability on the left while leaving the photo bright and visible across the center and right */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent sm:to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-black/20" />
 
-      {/* Content Container */}
+      {/* Verified Facility Photo Tag */}
+      <div className="absolute bottom-4 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/15 text-[11px] text-slate-200 shadow-md">
+        <Camera className="w-3.5 h-3.5 text-orange-400" />
+        <span className="font-medium">Real Facility Photo · Isolo, Lagos</span>
+      </div>
+
+      {/* Content Container with semi-transparent glass backing for maximum text clarity */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
-        <div className="max-w-3xl space-y-4">
+        <div className="max-w-2xl backdrop-blur-[2px] bg-slate-950/40 p-6 sm:p-8 rounded-2xl border border-white/10 space-y-4 shadow-xl">
           
           {/* Breadcrumb Navigation */}
           <nav className="flex items-center gap-1.5 text-xs text-slate-300 font-medium tracking-wide">
@@ -59,7 +64,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
             </button>
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                 {crumb.page ? (
                   <button
                     onClick={() => onNavigate(crumb.page!)}
@@ -76,18 +81,18 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
 
           {/* Badge */}
           {badge && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-600/25 border border-orange-500/40 rounded-full text-orange-300 text-xs font-semibold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-600/30 border border-orange-500/50 rounded-full text-orange-300 text-xs font-semibold uppercase tracking-wider">
               <span>{badge}</span>
             </div>
           )}
 
           {/* Title */}
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+          <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
             {title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed font-normal">
             {subtitle}
           </p>
 

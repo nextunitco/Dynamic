@@ -167,18 +167,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
                 <img
-                  src={companyImages.repairs.cdnUrl}
+                  src={companyImages.repairs.localPath}
                   alt={companyImages.repairs.alt}
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (target.src !== window.location.origin + companyImages.repairs.localPath) {
-                      target.src = companyImages.repairs.localPath;
+                    if (target.src !== companyImages.repairs.cdnUrl) {
+                      target.src = companyImages.repairs.cdnUrl;
                     }
                   }}
-                  className="w-full h-64 sm:h-72 object-cover"
+                  className="w-full h-80 sm:h-96 object-cover filter brightness-100 contrast-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent flex items-end p-5">
                   <div className="text-white">
                     <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Service Bay</span>
                     <p className="text-xs font-medium text-slate-200">Hydraulic lift inspection &amp; powertrain maintenance</p>
@@ -302,18 +302,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
                 <img
-                  src={companyImages.tyres.cdnUrl}
+                  src={companyImages.tyres.localPath}
                   alt={companyImages.tyres.alt}
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (target.src !== window.location.origin + companyImages.tyres.localPath) {
-                      target.src = companyImages.tyres.localPath;
+                    if (target.src !== companyImages.tyres.cdnUrl) {
+                      target.src = companyImages.tyres.cdnUrl;
                     }
                   }}
-                  className="w-full h-64 sm:h-72 object-cover"
+                  className="w-full h-80 sm:h-96 object-cover filter brightness-100 contrast-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent flex items-end p-5">
                   <div className="text-white">
                     <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Tyre Bay</span>
                     <p className="text-xs font-medium text-slate-200">State-of-the-art rim clamp &amp; pneumatic fitting station</p>
@@ -379,17 +379,17 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 Book Alignment &amp; Balancing
               </button>
             </div>
-            <div className="rounded-xl overflow-hidden border border-neutral-200 h-56">
+            <div className="rounded-xl overflow-hidden border border-neutral-200 h-72 sm:h-80 shadow-xs">
               <img
-                src={companyImages.wheelBalancing.cdnUrl}
+                src={companyImages.wheelBalancing.localPath}
                 alt={companyImages.wheelBalancing.alt}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (target.src !== window.location.origin + companyImages.wheelBalancing.localPath) {
-                    target.src = companyImages.wheelBalancing.localPath;
+                  if (target.src !== companyImages.wheelBalancing.cdnUrl) {
+                    target.src = companyImages.wheelBalancing.cdnUrl;
                   }
                 }}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover filter brightness-100 contrast-105"
                 loading="lazy"
               />
             </div>
@@ -523,18 +523,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
                 <img
-                  src={companyImages.diagnostics.cdnUrl}
+                  src={companyImages.diagnostics.localPath}
                   alt={companyImages.diagnostics.alt}
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (target.src !== window.location.origin + companyImages.diagnostics.localPath) {
-                      target.src = companyImages.diagnostics.localPath;
+                    if (target.src !== companyImages.diagnostics.cdnUrl) {
+                      target.src = companyImages.diagnostics.cdnUrl;
                     }
                   }}
-                  className="w-full h-72 sm:h-80 object-cover"
+                  className="w-full h-80 sm:h-96 object-cover filter brightness-100 contrast-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent flex items-end p-5">
                   <div className="text-white">
                     <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Diagnostic Suite</span>
                     <p className="text-xs font-medium text-slate-200">Electronic system interrogation &amp; live sensor graphing</p>
@@ -906,18 +906,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
                 <img
-                  src={companyImages.fleet.cdnUrl}
+                  src={companyImages.fleet.localPath}
                   alt={companyImages.fleet.alt}
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (target.src !== window.location.origin + companyImages.fleet.localPath) {
-                      target.src = companyImages.fleet.localPath;
+                    if (target.src !== companyImages.fleet.cdnUrl) {
+                      target.src = companyImages.fleet.cdnUrl;
                     }
                   }}
-                  className="w-full h-64 sm:h-72 object-cover"
+                  className="w-full h-80 sm:h-96 object-cover filter brightness-100 contrast-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent flex items-end p-5">
                   <div className="text-white">
                     <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Fleet Bay</span>
                     <p className="text-xs font-medium text-slate-200">Commercial vans &amp; enterprise utility fleet maintenance</p>

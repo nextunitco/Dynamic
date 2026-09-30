@@ -125,6 +125,55 @@ export const FleetPage: React.FC<FleetPageProps> = ({
         </div>
       </section>
 
+      {/* 2.5 Dedicated Showcase: Fleet Facility & Utility Bays (WA0042) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-3xl border border-neutral-200/90 overflow-hidden shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+          <div className="lg:col-span-7 p-8 sm:p-12 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-semibold text-blue-900">
+              <Truck className="w-3.5 h-3.5 text-orange-600" />
+              <span>Real Facility Operations · Isolo, Lagos</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+              High-Capacity Service Bays Engineered for Commercial Transport
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+              Our workshop is configured with high-clearance bays and heavy-duty hydraulic lifts capable of handling multi-ton delivery vans, armored security transport, and executive corporate fleets simultaneously.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
+                <span className="text-xs text-neutral-700 font-medium">Turnaround speed guaranteed by binding SLA terms</span>
+              </div>
+              <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span className="text-xs text-neutral-700 font-medium">Priority parts stocking for your exact vehicle models</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 h-80 sm:h-96 lg:h-full min-h-[340px] relative bg-neutral-900 overflow-hidden">
+            <img
+              src={companyImages.fleet.localPath}
+              alt="Dynamic Automotive fleet maintenance bay with commercial vans"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src !== companyImages.fleet.cdnUrl) {
+                  target.src = companyImages.fleet.cdnUrl;
+                }
+              }}
+              className="w-full h-full object-cover object-center filter brightness-100 contrast-105 hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-6">
+              <div className="text-white space-y-1">
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Real Workshop Asset</span>
+                <p className="text-xs font-semibold text-slate-100">Commercial Fleet Maintenance Bays at Isolo Workshop</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Corporate Clients Display (Explicit Requirement) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="border-b border-neutral-200 pb-5">

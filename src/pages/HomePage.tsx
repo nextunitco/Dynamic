@@ -33,6 +33,7 @@ import {
   corporateClientAssets,
   LOYALTY_REWARD_DISPLAY_RATE 
 } from '../data/companyImages';
+import { FacilityGallery } from '../components/FacilityGallery';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -135,26 +136,33 @@ export const HomePage: React.FC<HomePageProps> = ({
             }`}
           >
             <img
-              src={slide.image.cdnUrl}
+              src={slide.image.localPath}
               alt={slide.image.alt}
               onError={(e) => {
                 const target = e.currentTarget;
-                if (target.src !== window.location.origin + slide.image.localPath) {
-                  target.src = slide.image.localPath;
+                if (target.src !== slide.image.cdnUrl) {
+                  target.src = slide.image.cdnUrl;
                 }
               }}
-              className="w-full h-full object-cover object-center scale-100"
+              className="w-full h-full object-cover object-center scale-100 filter brightness-100 contrast-105"
               loading={idx === 0 ? 'eager' : 'lazy'}
             />
-            {/* Dark Transparent Overlays ensuring maximum readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/60" />
-            <div className="absolute inset-0 bg-slate-950/30 mix-blend-multiply" />
+            {/* High-visibility directional scrim: protects text on the left while leaving the workshop background bright and vivid */}
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent sm:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-black/20" />
           </div>
         ))}
 
+        {/* Live Facility Photo Tag (top right) */}
+        <div className="absolute top-6 right-6 sm:right-10 z-20 hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/15 text-xs text-slate-200 shadow-lg">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-slate-400">Genuine Facility:</span>
+          <span className="text-orange-400 font-semibold">{slides[currentSlide].caption}</span>
+        </div>
+
         {/* Hero Content Container */}
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
-          <div className="max-w-3xl space-y-6">
+          <div className="max-w-2xl backdrop-blur-[2px] bg-slate-950/45 p-6 sm:p-8 rounded-2xl border border-white/15 space-y-6 shadow-2xl">
             
             {/* Verified Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-600/25 border border-orange-500/40 rounded-full text-xs font-semibold text-orange-300">
@@ -383,15 +391,15 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
               <img
-                src={companyImages.teamWorkshop.cdnUrl}
+                src={companyImages.teamWorkshop.localPath}
                 alt={companyImages.teamWorkshop.alt}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (target.src !== window.location.origin + companyImages.teamWorkshop.localPath) {
-                    target.src = companyImages.teamWorkshop.localPath;
+                  if (target.src !== companyImages.teamWorkshop.cdnUrl) {
+                    target.src = companyImages.teamWorkshop.cdnUrl;
                   }
                 }}
-                className="w-full h-80 sm:h-96 object-cover"
+                className="w-full h-80 sm:h-96 object-cover filter brightness-100 contrast-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex items-end p-6">
@@ -406,26 +414,39 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
+      {/* 3.5 DEDICATED FACILITY GALLERY SHOWCASE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FacilityGallery />
+      </section>
+
       {/* 4. FLEET SERVICES: USING REAL WA0042 IMAGE (Explicit Requirement) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-slate-950 text-white border border-slate-800 shadow-xl">
+        <div className="relative rounded-3xl overflow-hidden bg-slate-950 text-white border border-slate-800 shadow-xl min-h-[420px] flex items-center">
           
-          {/* Background Real Image WA0042 */}
+          {/* Background Real Image WA0042 - High-visibility and crisp */}
           <img
-            src={companyImages.fleet.cdnUrl}
+            src={companyImages.fleet.localPath}
             alt="Dynamic Automotive fleet maintenance bay with commercial vans"
             onError={(e) => {
               const target = e.currentTarget;
-              if (target.src !== window.location.origin + companyImages.fleet.localPath) {
-                target.src = companyImages.fleet.localPath;
+              if (target.src !== companyImages.fleet.cdnUrl) {
+                target.src = companyImages.fleet.cdnUrl;
               }
             }}
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-100 contrast-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/60" />
+          {/* Scrim protecting text on the left while leaving the commercial fleet vans completely exposed on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-transparent sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-black/20" />
 
-          <div className="relative z-10 p-8 sm:p-12 lg:p-16 max-w-2xl space-y-5">
+          {/* Genuine photo badge */}
+          <div className="absolute top-4 right-4 sm:right-6 z-20 hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/15 text-[11px] text-slate-200">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+            <span>Commercial Fleet Bays · Isolo</span>
+          </div>
+
+          <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-xl space-y-4 m-4 sm:m-6 backdrop-blur-[2px] bg-slate-950/50 rounded-2xl border border-white/10 shadow-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-900/50 border border-blue-700/50 rounded-full text-xs font-semibold text-blue-200">
               <Truck className="w-3.5 h-3.5 text-orange-400" />
               <span>Commercial &amp; Corporate Vehicle Operations</span>
@@ -520,18 +541,18 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
               <img
-                src={companyImages.loyalty.cdnUrl}
+                src={companyImages.loyalty.localPath}
                 alt="Dynamic Automotive customer service reception"
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (target.src !== window.location.origin + companyImages.loyalty.localPath) {
-                    target.src = companyImages.loyalty.localPath;
+                  if (target.src !== companyImages.loyalty.cdnUrl) {
+                    target.src = companyImages.loyalty.cdnUrl;
                   }
                 }}
-                className="w-full h-64 sm:h-72 object-cover"
+                className="w-full h-72 sm:h-80 object-cover filter brightness-100 contrast-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-5">
                 <div className="text-white">
                   <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Customer Lounge</span>
                   <p className="text-xs font-medium text-slate-200">VIP service intake &amp; member benefits desk</p>

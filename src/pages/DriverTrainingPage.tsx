@@ -137,6 +137,55 @@ export const DriverTrainingPage: React.FC<DriverTrainingPageProps> = ({
         </div>
       </section>
 
+      {/* 2.5 Dedicated Showcase: Driver Training Vehicle & Instruction Environment (WA0041) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-3xl border border-neutral-200/90 overflow-hidden shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+          <div className="lg:col-span-7 p-8 sm:p-12 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-xs font-semibold text-orange-700">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Certified Training Vehicle &amp; Safety Drills</span>
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+              Practical In-Vehicle Instruction with Real Nigerian Road Scenarios
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+              Theory is only half the battle. Our instructors conduct intensive practical drills using designated safety vehicles, guiding your company chauffeurs and fleet drivers through high-speed stopping distance calculations, emergency evasive swerving, tyre blowout response, and eco-throttle control.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
+                <span className="text-xs text-neutral-700 font-medium">Hands-on skid-pad and wet-weather braking control</span>
+              </div>
+              <div className="p-3 bg-neutral-50 rounded-xl border border-neutral-100 flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <span className="text-xs text-neutral-700 font-medium">Lagos-tested hazard anticipation &amp; pothole avoidance</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 h-80 sm:h-96 lg:h-full min-h-[340px] relative bg-neutral-900 overflow-hidden">
+            <img
+              src={companyImages.driverTraining.localPath}
+              alt="Dynamic Automotive driver training safety vehicle and instruction"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src !== companyImages.driverTraining.cdnUrl) {
+                  target.src = companyImages.driverTraining.cdnUrl;
+                }
+              }}
+              className="w-full h-full object-cover object-center filter brightness-100 contrast-105 hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-6">
+              <div className="text-white space-y-1">
+                <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Genuine Training Asset</span>
+                <p className="text-xs font-semibold text-slate-100">Dynamic Automotive Driver Training &amp; Defensive Vehicle</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Important Notice: Roadside Recovery is explicitly "Coming Soon" */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-6 sm:p-8 rounded-2xl bg-amber-50/70 border border-amber-200/90 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

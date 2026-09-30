@@ -12,34 +12,34 @@ export interface ImageAsset {
 }
 
 export const companyImages = {
-  // Slideshow images for Home page hero only
+  // Slideshow images for Home page hero only (High-Definition 1080p & 1024p)
   homeSlide1: {
     id: 'WA0044',
-    cdnUrl: 'https://i.postimg.cc/grj54rDC/IMG-20260928-WA0044.jpg',
+    cdnUrl: 'https://i.postimg.cc/Y2zHrWmC/IMG-20260928-WA0044.jpg',
     localPath: '/company/WA0044.jpg',
     alt: 'Dynamic Automotive & Tyre Centre modern workshop facility and service bay'
   },
   homeSlide2: {
     id: 'WA0042',
-    cdnUrl: 'https://i.postimg.cc/c6zzzZkM/IMG-20260928-WA0042.jpg',
+    cdnUrl: 'https://i.postimg.cc/Yq2whC1V/IMG-20260928-WA0042.jpg',
     localPath: '/company/WA0042.jpg',
     alt: 'Dynamic Automotive commercial vehicle and fleet maintenance bay'
   },
   homeSlide3: {
     id: 'WA0043',
-    cdnUrl: 'https://i.postimg.cc/3WN69W1M/IMG-20260928-WA0043.jpg',
+    cdnUrl: 'https://i.postimg.cc/y6yH1ZSN/IMG-20260928-WA0043.jpg',
     localPath: '/company/WA0043.jpg',
     alt: 'Dynamic Automotive certified technicians and engineering leadership team'
   },
   homeSlide4: {
     id: 'WA0033',
-    cdnUrl: 'https://i.postimg.cc/rD1Yz4VW/IMG-20260928-WA0033(1).jpg',
+    cdnUrl: 'https://i.postimg.cc/3xVMSjzL/IMG-20260928-WA0033(1).jpg',
     localPath: '/company/WA0033.jpg',
     alt: 'Precision vehicle mechanical repairs and hydraulic lift inspection'
   },
   homeSlide5: {
     id: 'WA0045',
-    cdnUrl: 'https://i.postimg.cc/MXH4tXD4/IMG-20260928-WA0045.jpg',
+    cdnUrl: 'https://i.postimg.cc/ZYxSbdyT/IMG-20260928-WA0045.jpg',
     localPath: '/company/WA0045.jpg',
     alt: 'Advanced bi-directional engine diagnostic scanning and computerized troubleshooting'
   },
@@ -47,67 +47,67 @@ export const companyImages = {
   // Internal Page Headers (Specific 1-to-1 Mapping)
   about: {
     id: 'WA0043',
-    cdnUrl: 'https://i.postimg.cc/3WN69W1M/IMG-20260928-WA0043.jpg',
+    cdnUrl: 'https://i.postimg.cc/y6yH1ZSN/IMG-20260928-WA0043.jpg',
     localPath: '/company/WA0043.jpg',
     alt: 'About Dynamic Automotive & Tyre Centre team and leadership'
   },
   services: {
     id: 'WA0044',
-    cdnUrl: 'https://i.postimg.cc/grj54rDC/IMG-20260928-WA0044.jpg',
+    cdnUrl: 'https://i.postimg.cc/Y2zHrWmC/IMG-20260928-WA0044.jpg',
     localPath: '/company/WA0044.jpg',
     alt: 'Comprehensive automotive engineering and workshop services'
   },
   tyres: {
-    id: 'WA0035',
-    cdnUrl: 'https://i.postimg.cc/cvybshSK/IMG-20260928-WA0035.jpg',
-    localPath: '/company/WA0035.jpg',
+    id: 'WA0034',
+    cdnUrl: 'https://i.postimg.cc/q73P9hdm/IMG-20260928-WA0034.jpg',
+    localPath: '/company/WA0034.jpg',
     alt: 'Professional tyre fitting, wheel balancing and mobile fitting services'
   },
   repairs: {
     id: 'WA0033',
-    cdnUrl: 'https://i.postimg.cc/rD1Yz4VW/IMG-20260928-WA0033(1).jpg',
+    cdnUrl: 'https://i.postimg.cc/3xVMSjzL/IMG-20260928-WA0033(1).jpg',
     localPath: '/company/WA0033.jpg',
     alt: 'Vehicle repairs, routine servicing and mechanical maintenance'
   },
   diagnostics: {
     id: 'WA0045',
-    cdnUrl: 'https://i.postimg.cc/MXH4tXD4/IMG-20260928-WA0045.jpg',
+    cdnUrl: 'https://i.postimg.cc/ZYxSbdyT/IMG-20260928-WA0045.jpg',
     localPath: '/company/WA0045.jpg',
     alt: 'Electronic vehicle diagnostics and computer system checks'
   },
   driverTraining: {
     id: 'WA0041',
-    cdnUrl: 'https://i.postimg.cc/RqYYY9p6/IMG-20260928-WA0041.jpg',
+    cdnUrl: 'https://i.postimg.cc/m2ZGtgQw/IMG-20260928-WA0041.jpg',
     localPath: '/company/WA0041.jpg',
     alt: 'Dynamic Automotive driver training and defensive road safety program'
   },
   fleet: {
     id: 'WA0042',
-    cdnUrl: 'https://i.postimg.cc/c6zzzZkM/IMG-20260928-WA0042.jpg',
+    cdnUrl: 'https://i.postimg.cc/Yq2whC1V/IMG-20260928-WA0042.jpg',
     localPath: '/company/WA0042.jpg',
     alt: 'Corporate fleet maintenance and commercial vehicle support'
   },
   loyalty: {
     id: 'WA0036',
-    cdnUrl: 'https://i.postimg.cc/XrSzVLbp/IMG-20260928-WA0036.jpg',
+    cdnUrl: 'https://i.postimg.cc/FH75VCCg/IMG-20260928-WA0036.jpg',
     localPath: '/company/WA0036.jpg',
     alt: 'Dynamic Auto loyalty club and customer service reception'
   },
   knowledgeHub: {
-    id: 'WA0046',
-    cdnUrl: 'https://i.postimg.cc/23yJT3wg/IMG-20260928-WA0046.jpg',
-    localPath: '/company/WA0046.jpg',
+    id: 'WA0045',
+    cdnUrl: 'https://i.postimg.cc/ZYxSbdyT/IMG-20260928-WA0045.jpg',
+    localPath: '/company/WA0045.jpg',
     alt: 'Automotive knowledge hub, tyre technical guides and maintenance education'
   },
   partners: {
     id: 'WA0038',
-    cdnUrl: 'https://i.postimg.cc/QHWzGPRL/IMG-20260928-WA0038.jpg',
+    cdnUrl: 'https://i.postimg.cc/tCrGPGkg/IMG-20260928-WA0038.jpg',
     localPath: '/company/WA0038.jpg',
     alt: 'Industry partnerships and Bosch certified automotive excellence'
   },
   contact: {
     id: 'WA0039',
-    cdnUrl: 'https://i.postimg.cc/fJ0PnF1j/IMG-20260928-WA0039.jpg',
+    cdnUrl: 'https://i.postimg.cc/TYkvmv9S/IMG-20260928-WA0039.jpg',
     localPath: '/company/WA0039.jpg',
     alt: 'Dynamic Automotive & Tyre Centre workshop entrance in Isolo Lagos'
   },
@@ -115,25 +115,25 @@ export const companyImages = {
   // Supporting Workshop Images
   tyreFittingSupporting: {
     id: 'WA0034',
-    cdnUrl: 'https://i.postimg.cc/zLq2hfvW/IMG-20260928-WA0034.jpg',
+    cdnUrl: 'https://i.postimg.cc/q73P9hdm/IMG-20260928-WA0034.jpg',
     localPath: '/company/WA0034.jpg',
     alt: 'Tyre fitting and laser wheel alignment bay'
   },
   boschPartnership: {
     id: 'WA0037',
-    cdnUrl: 'https://i.postimg.cc/qNsZgKJg/IMG-20260928-WA0037.jpg',
+    cdnUrl: 'https://i.postimg.cc/bwWXC040/IMG-20260928-WA0037.jpg',
     localPath: '/company/WA0037.jpg',
     alt: 'Technical expertise and Bosch diagnostic equipment partnership'
   },
   teamWorkshop: {
     id: 'WA0040',
-    cdnUrl: 'https://i.postimg.cc/RNnY582T/IMG-20260928-WA0040.jpg',
+    cdnUrl: 'https://i.postimg.cc/BQhfDfgR/IMG-20260928-WA0040.jpg',
     localPath: '/company/WA0040.jpg',
     alt: 'Dynamic Automotive trained technical workshop engineers'
   },
   wheelBalancing: {
     id: 'WA0046',
-    cdnUrl: 'https://i.postimg.cc/23yJT3wg/IMG-20260928-WA0046.jpg',
+    cdnUrl: 'https://i.postimg.cc/fWfNz90W/IMG-20260928-WA0046.jpg',
     localPath: '/company/WA0046.jpg',
     alt: 'Digital dynamic wheel balancing and vibration elimination'
   }

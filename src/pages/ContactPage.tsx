@@ -324,18 +324,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="relative h-72 sm:h-96 bg-neutral-900 overflow-hidden">
               <img
-                src={companyImages.contact.cdnUrl}
+                src={companyImages.contact.localPath}
                 alt={companyImages.contact.alt}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (target.src !== window.location.origin + companyImages.contact.localPath) {
-                    target.src = companyImages.contact.localPath;
+                  if (target.src !== companyImages.contact.cdnUrl) {
+                    target.src = companyImages.contact.cdnUrl;
                   }
                 }}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover filter brightness-100 contrast-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-6">
                 <div className="text-white space-y-1">
                   <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">Workshop Exterior</span>
                   <p className="text-sm font-semibold text-slate-100">Dynamic Auto &amp; Tyre Centre Isolo Facility Entrance</p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { companyImages } from '../data/companyImages';
+import { FacilityGallery } from '../components/FacilityGallery';
 import { PageId } from '../types';
 import { 
   ShieldCheck, 
@@ -103,18 +104,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
           <div className="lg:col-span-5 space-y-4">
             <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
               <img
-                src={companyImages.teamWorkshop.cdnUrl}
+                src={companyImages.teamWorkshop.localPath}
                 alt="Dynamic Automotive technical team and workshop engineering"
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (target.src !== window.location.origin + companyImages.teamWorkshop.localPath) {
-                    target.src = companyImages.teamWorkshop.localPath;
+                  if (target.src !== companyImages.teamWorkshop.cdnUrl) {
+                    target.src = companyImages.teamWorkshop.cdnUrl;
                   }
                 }}
-                className="w-full h-80 sm:h-96 object-cover"
+                className="w-full h-80 sm:h-96 object-cover filter brightness-100 contrast-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end p-6">
                 <div className="text-white space-y-1">
                   <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">Engineering Culture</span>
                   <p className="text-xs font-semibold text-slate-100">Certified Diagnostic Technicians &amp; Mechanical Specialists</p>
@@ -188,6 +189,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
             );
           })}
         </div>
+      </section>
+
+      {/* 4.5 Full Facility Photographic Showcase */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FacilityGallery />
       </section>
 
       {/* 5. Customer-Focused Approach & Fleet Capability Callout */}

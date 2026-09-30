@@ -69,18 +69,18 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
               <img
-                src={companyImages.boschPartnership.cdnUrl}
+                src={companyImages.boschPartnership.localPath}
                 alt="Dynamic Automotive Bosch technical equipment partnership"
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (target.src !== window.location.origin + companyImages.boschPartnership.localPath) {
-                    target.src = companyImages.boschPartnership.localPath;
+                  if (target.src !== companyImages.boschPartnership.cdnUrl) {
+                    target.src = companyImages.boschPartnership.cdnUrl;
                   }
                 }}
-                className="w-full h-64 sm:h-72 object-cover"
+                className="w-full h-72 sm:h-84 object-cover filter brightness-100 contrast-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent flex items-end p-5">
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent flex items-end p-5">
                 <div className="text-white">
                   <span className="text-[11px] font-semibold text-orange-400 uppercase tracking-wider block">Workshop Facility</span>
                   <p className="text-xs font-medium text-slate-200">Bosch automated testing bays &amp; diagnostic workstations</p>
