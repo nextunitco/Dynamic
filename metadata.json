@@ -1,0 +1,6 @@
+{
+  "name": "Dynamic Auto & Tyre Centre",
+  "description": "Professional vehicle servicing, tyres, diagnostics and maintenance from trusted automotive specialists in Lagos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
