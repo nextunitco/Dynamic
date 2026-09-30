@@ -40,14 +40,18 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              Operating since 2021 in Isolo, Lagos. Delivering precision diagnostics, premium tyre fitting, manufacturer-grade servicing, and dependable fleet maintenance.
+              Operating since 2021 in Isolo, Lagos. Delivering precision diagnostics, premium tyre fitting, manufacturer-grade servicing, driver training, and corporate fleet maintenance.
             </p>
 
             {/* Quick Contact snippet */}
             <div className="space-y-2.5 pt-2 text-xs text-slate-300">
+              <div className="flex items-center gap-2 text-slate-400">
+                <span className="font-semibold text-slate-300">RC No:</span>
+                <span className="font-mono text-orange-400 font-bold">3332447</span>
+              </div>
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-                <span>Oyemat House, 45 Alhaja Kudirat Adenekan Road, Isolo, Lagos.</span>
+                <span>Oyemat House, 45 Kudirat Adenekan Rd, Isolo, Lagos. Opposite Bokku Mart, Canoe Bus/Stop.</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-orange-500 shrink-0" />
@@ -127,6 +131,14 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('partners')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Partners &amp; Clients
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('contact')}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
@@ -156,6 +168,30 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
                   Tyres &amp; Wheels
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('fleet')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Fleet Maintenance
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('driver-training')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Driver Training &amp; Safety
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services')}
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Diagnostics &amp; Electrical
                 </button>
               </li>
               <li>

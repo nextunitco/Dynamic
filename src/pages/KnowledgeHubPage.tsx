@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import { PageId, KnowledgeArticle } from '../types';
 import { KNOWLEDGE_CATEGORIES, KNOWLEDGE_ARTICLES } from '../data/knowledgeData';
+import { PageHeader } from '../components/PageHeader';
+import { companyImages } from '../data/companyImages';
 
 interface KnowledgeHubPageProps {
   onNavigate: (page: PageId) => void;
@@ -46,46 +48,41 @@ export const KnowledgeHubPage: React.FC<KnowledgeHubPageProps> = ({
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-20">
+    <div className="space-y-12 sm:space-y-16 pb-20 bg-neutral-50">
       
-      {/* 1. Header & Search Bar */}
-      <section className="bg-blue-950 text-white py-16 sm:py-20 border-b border-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          
-          <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-orange-400 block">
-              Automotive Engineering &amp; Preventive Care
-            </span>
-            <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-              Knowledge Hub
-            </h1>
-            <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal">
-              An educational resource designed to help car owners understand vehicle systems, recognize critical warning symptoms, and practice smart preventive maintenance.
-            </p>
-          </div>
+      {/* 1. Header with Real WA0046 Company Image */}
+      <PageHeader
+        title="Automotive Knowledge Hub & Guides"
+        subtitle="An educational technical resource designed to help car owners understand vehicle systems, recognize critical acoustic and electronic warning symptoms, and practice smart preventive maintenance."
+        badge="14 Technical Disciplines"
+        image={companyImages.knowledgeHub}
+        breadcrumbs={[{ label: 'Knowledge Hub' }]}
+        onNavigate={onNavigate}
+        ctaText="Book Diagnostic Scan"
+        onCtaClick={() => onOpenBooking('Diagnostics')}
+      />
 
-          {/* Search Bar matching prompt requirement */}
-          <div className="max-w-2xl relative">
-            <div className="relative">
-              <Search className="w-5 h-5 text-neutral-400 absolute left-4 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="What do you want to learn about your car?"
-                className="w-full pl-12 pr-4 py-3.5 bg-blue-900/60 text-white placeholder:text-blue-200/60 text-sm rounded-xl border border-blue-800 focus:outline-hidden focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500 shadow-sm"
-              />
-            </div>
+      {/* Search Input Container */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
+        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-neutral-200/90 shadow-md max-w-3xl mx-auto">
+          <div className="relative">
+            <Search className="w-5 h-5 text-neutral-400 absolute left-4 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="What do you want to learn about your car? (e.g. brakes, oil viscosity, vibrations...)"
+              className="w-full pl-12 pr-16 py-3 bg-neutral-50 text-neutral-900 placeholder:text-neutral-500 text-sm rounded-xl border border-neutral-200 focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+            />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-blue-200 hover:text-white"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-neutral-500 hover:text-neutral-800 font-medium cursor-pointer"
               >
                 Clear
               </button>
             )}
           </div>
-
         </div>
       </section>
 

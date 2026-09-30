@@ -15,6 +15,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { BookingFormData, PageId } from '../types';
+import { PageHeader } from '../components/PageHeader';
+import { companyImages } from '../data/companyImages';
 
 interface BookServicePageProps {
   initialService?: string;
@@ -26,16 +28,16 @@ export const BookServicePage: React.FC<BookServicePageProps> = ({
   onNavigate
 }) => {
   const serviceOptions = [
-    'Vehicle Service',
-    'Tyres',
-    'Wheel Alignment',
-    'Wheel Balancing',
-    'Brake Check',
+    'Vehicle Servicing',
+    'Vehicle Repairs',
+    'Tyres & Wheels',
+    'Brake Service',
+    'MOT',
     'Diagnostics',
     'Battery',
     'Air Conditioning',
     'Suspension',
-    'MOT Roadworthiness Test',
+    'Fleet Services',
     'Other'
   ];
 
@@ -247,20 +249,32 @@ export const BookServicePage: React.FC<BookServicePageProps> = ({
 
   // 2. MAIN BOOKING FORM
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-8">
+    <div className="space-y-12 sm:space-y-16 pb-20 bg-neutral-50">
       
-      {/* Title & Introduction */}
-      <div className="space-y-3 text-center sm:text-left">
-        <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
-          Schedule An Appointment
-        </span>
-        <h1 className="font-display text-2xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
-          Book a Service at Dynamic Auto
-        </h1>
-        <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
-          Select your vehicle service, preferred date, and time. Our service team will prepare your bay, diagnostic equipment, and genuine parts prior to your arrival.
-        </p>
-      </div>
+      {/* 1. Header with Real WA0033 Company Image */}
+      <PageHeader
+        title="Book an Automotive Service"
+        subtitle="Select your vehicle service, preferred date, and workshop arrival slot. Our engineering team will prepare your bay, diagnostic equipment, and genuine OEM parts prior to your arrival."
+        badge="Online Workshop Reservation"
+        image={companyImages.repairs}
+        breadcrumbs={[{ label: 'Book a Service' }]}
+        onNavigate={onNavigate}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        {/* Title & Introduction */}
+        <div className="space-y-2 text-center sm:text-left">
+          <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
+            Schedule An Appointment
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+            Reserve Your Workshop Slot
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
+            Please fill out your vehicle specifications and required service. You can pay securely upon physical inspection and job completion at our Isolo workshop.
+          </p>
+        </div>
 
       {errorMsg && (
         <div className="p-4 bg-orange-50 border border-orange-200 rounded-xl text-xs sm:text-sm text-orange-800 flex items-center gap-2.5">
@@ -498,7 +512,7 @@ export const BookServicePage: React.FC<BookServicePageProps> = ({
             ) : (
               <>
                 <Calendar className="w-4 h-4" />
-                <span>Submit Service Booking</span>
+                <span>Book a Service</span>
               </>
             )}
           </button>
@@ -506,6 +520,7 @@ export const BookServicePage: React.FC<BookServicePageProps> = ({
 
       </form>
 
+      </div>
     </div>
   );
 };

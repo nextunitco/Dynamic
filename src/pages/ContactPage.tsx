@@ -6,13 +6,16 @@ import {
   Clock, 
   Send, 
   CheckCircle2, 
-  Facebook, 
-  Instagram, 
-  Linkedin,
-  MessageSquare,
-  Navigation
+  AlertCircle,
+  Building2,
+  Navigation,
+  Calendar,
+  ShieldCheck,
+  ArrowRight
 } from 'lucide-react';
 import { PageId } from '../types';
+import { PageHeader } from '../components/PageHeader';
+import { companyImages } from '../data/companyImages';
 
 interface ContactPageProps {
   onNavigate: (page: PageId) => void;
@@ -26,13 +29,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
     phone: '',
     message: ''
   });
-
-  const [isSent, setIsSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
+    if (!formState.name || !formState.email || !formState.message) {
       return;
     }
     setIsSending(true);
@@ -45,24 +47,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
   };
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-20">
+    <div className="space-y-16 sm:space-y-24 pb-20 bg-neutral-50">
       
-      {/* 1. Header Banner */}
-      <section className="bg-blue-950 text-white py-16 sm:py-20 border-b border-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-wider text-orange-400 block">
-              Direct Workshop Communication
-            </span>
-            <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-              Contact Dynamic Auto &amp; Tyre Centre
-            </h1>
-            <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal">
-              Have an urgent question about your vehicle, need a custom fleet quotation, or wish to arrange mobile tyre fitting? We’re here to assist you.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* 1. Header with Real WA0039 Company Image */}
+      <PageHeader
+        title="Contact Dynamic Automotive & Tyre Centre"
+        subtitle="RC No: 3332447 · Oyemat House, 45 Kudirat Adenekan Rd, Isolo, Lagos. Opposite Bokku Mart, Canoe Bus/Stop. Speak directly with our master technicians or schedule a visit."
+        badge="Direct Workshop Communication"
+        image={companyImages.contact}
+        breadcrumbs={[{ label: 'Contact' }]}
+        onNavigate={onNavigate}
+        ctaText="Book a Service Appointment"
+        onCtaClick={onOpenBooking}
+      />
 
       {/* 2. Contact Information Cards & Form Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,10 +68,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
           {/* Left Column: Direct Info Cards (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
-            <div className="bg-white rounded-2xl border border-neutral-200 p-6 space-y-4 shadow-xs">
-              <h2 className="font-display text-lg font-bold text-neutral-900 border-b border-neutral-100 pb-3">
-                Workshop Headquarters
-              </h2>
+            <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-8 space-y-5 shadow-xs">
+              <div className="border-b border-neutral-100 pb-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
+                  Official Registered Workshop
+                </span>
+                <h2 className="font-display text-xl font-bold text-neutral-900 mt-1">
+                  Dynamic Automotive &amp; Tyre Centre
+                </h2>
+                <span className="text-xs text-neutral-500 font-mono">RC No: 3332447</span>
+              </div>
 
               <div className="space-y-4 text-xs sm:text-sm text-neutral-700">
                 {/* Address */}
@@ -83,9 +86,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block text-neutral-900 font-semibold mb-0.5">Address</strong>
+                    <strong className="block text-neutral-900 font-semibold mb-0.5">Physical Workshop Address:</strong>
                     <p className="text-neutral-600 leading-relaxed">
-                      Oyemat House, 45 Alhaja Kudirat Adenekan Road, Isolo, Lagos.
+                      Oyemat House, 45 Kudirat Adenekan Rd, Isolo, Lagos.<br />
+                      <span className="text-neutral-500 font-medium">(Opposite Bokku Mart, Canoe Bus/Stop)</span>
                     </p>
                   </div>
                 </div>
@@ -96,7 +100,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block text-neutral-900 font-semibold mb-0.5">Telephone &amp; WhatsApp</strong>
+                    <strong className="block text-neutral-900 font-semibold mb-0.5">Telephone Inquiries:</strong>
                     <a
                       href="tel:+2349126983699"
                       className="text-orange-600 font-semibold hover:underline tabular-nums"
@@ -112,7 +116,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block text-neutral-900 font-semibold mb-0.5">Email Inquiries</strong>
+                    <strong className="block text-neutral-900 font-semibold mb-0.5">Email Desk:</strong>
                     <a
                       href="mailto:Info@dynamic.com.ng"
                       className="text-neutral-800 hover:text-orange-600 font-medium transition-colors"
@@ -128,17 +132,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block text-neutral-900 font-semibold mb-0.5">Operating Hours</strong>
-                    <p className="text-neutral-600 leading-relaxed">
-                      Monday &ndash; Friday: 8:00 AM &ndash; 6:00 PM<br />
-                      Saturday: 8:30 AM &ndash; 5:00 PM<br />
-                      Sunday: Closed (Mobile Emergency On-Demand)
+                    <strong className="block text-neutral-900 font-semibold mb-0.5">Workshop Operating Hours:</strong>
+                    <p className="text-neutral-600 leading-normal">
+                      Monday – Saturday: <span className="font-semibold text-neutral-800">8:00 AM – 6:00 PM</span><br />
+                      Sunday: <span className="text-neutral-500">Closed (Emergency fleet dispatch only)</span>
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Direct CTAs */}
+              {/* Direct Call / Email buttons */}
               <div className="pt-3 border-t border-neutral-100 grid grid-cols-2 gap-2">
                 <a
                   href="tel:+2349126983699"
@@ -157,70 +160,54 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
               </div>
             </div>
 
-            {/* Social Channels */}
-            <div className="bg-neutral-100 rounded-xl p-5 border border-neutral-200 space-y-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-600 block">
-                Connect on Social Channels
+            {/* Quick Booking CTA Card */}
+            <div className="bg-blue-950 text-white p-6 rounded-2xl border border-blue-900 shadow-xs space-y-3">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-orange-400">
+                Online Reservation
               </span>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-neutral-200 text-xs font-medium text-neutral-700 hover:text-orange-600 hover:border-orange-300 transition-colors"
-                >
-                  <Facebook className="w-4 h-4 text-blue-600" />
-                  <span>Facebook</span>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-neutral-200 text-xs font-medium text-neutral-700 hover:text-orange-600 hover:border-orange-300 transition-colors"
-                >
-                  <Instagram className="w-4 h-4 text-pink-600" />
-                  <span>Instagram</span>
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-neutral-200 text-xs font-medium text-neutral-700 hover:text-orange-600 hover:border-orange-300 transition-colors"
-                >
-                  <Linkedin className="w-4 h-4 text-blue-700" />
-                  <span>LinkedIn</span>
-                </a>
-              </div>
+              <h3 className="font-display text-base font-bold text-white">
+                Prefer to book a specific date &amp; arrival slot?
+              </h3>
+              <p className="text-xs text-blue-100/80 leading-relaxed">
+                Use our interactive booking form to reserve early morning drop-off or arrange mobile tyre fitting.
+              </p>
+              <button
+                onClick={onOpenBooking}
+                className="w-full py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Open Booking Form</span>
+              </button>
             </div>
 
           </div>
 
-          {/* Right Column: Contact Form (7 cols) */}
+          {/* Right Column: Contact Message Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-2xl border border-neutral-200 p-6 sm:p-10 shadow-xs space-y-6">
               
               <div className="space-y-1">
                 <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
-                  Send A Message
+                  Send A Direct Message
                 </span>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900">
-                  How Can We Help You?
+                  How Can Our Automotive Engineers Help You?
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-500">
-                  Fill in your details below and a service advisor will get back to you promptly.
+                <p className="text-xs sm:text-sm text-neutral-600">
+                  Please provide your vehicle details or corporate inquiry. We respond within 2 working hours.
                 </p>
               </div>
 
               {isSent ? (
-                <div className="p-8 bg-emerald-50 rounded-2xl border border-emerald-200 text-center space-y-3 animate-in fade-in">
-                  <div className="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center mx-auto">
+                <div className="p-8 bg-emerald-50 border border-emerald-200 rounded-xl text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h4 className="font-display text-lg font-bold text-emerald-900">
-                    Message Successfully Sent!
+                    Message Successfully Dispatched!
                   </h4>
-                  <p className="text-xs sm:text-sm text-emerald-800 max-w-sm mx-auto">
-                    Thank you for reaching out to Dynamic Auto &amp; Tyre Centre. One of our service managers will contact you within working hours.
+                  <p className="text-xs text-emerald-800 max-w-md mx-auto leading-relaxed">
+                    Thank you for reaching out to Dynamic Automotive &amp; Tyre Centre. A service advisor from our Isolo workshop will review your request and get in touch promptly.
                   </p>
                   <button
                     onClick={() => setIsSent(false)}
@@ -242,7 +229,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
                         placeholder="e.g. Samuel Okafor"
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                       />
                     </div>
 
@@ -256,42 +243,42 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
                         placeholder="e.g. samuel@example.com"
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-medium text-neutral-700 mb-1">
-                      Phone Number (optional)
+                      Phone Number (Optional)
                     </label>
                     <input
                       type="tel"
                       placeholder="e.g. 0812 345 6789"
                       value={formState.phone}
                       onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-medium text-neutral-700 mb-1">
-                      Message <span className="text-orange-500">*</span>
+                      Message / Vehicle Symptoms <span className="text-orange-500">*</span>
                     </label>
                     <textarea
                       required
                       rows={5}
-                      placeholder="Describe your inquiry, vehicle symptoms, or corporate fleet requirements..."
+                      placeholder="Describe your inquiry, vehicle symptoms (e.g. steering vibration, check engine light), or corporate fleet requirements..."
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-neutral-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="w-full sm:w-auto px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors shadow-xs cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full sm:w-auto px-8 py-3 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors shadow-xs cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                     <span>{isSending ? 'Sending Message...' : 'Send Message'}</span>
@@ -305,18 +292,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
         </div>
       </section>
 
-      {/* 3. Google Maps Styled Section */}
+      {/* 3. Location & Workshop Section (Using Real WA0039 Image) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-xs">
           
           <div className="p-6 border-b border-neutral-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block mb-0.5">
-                Location &amp; Access
+                Workshop Location &amp; Physical Access
               </span>
               <h3 className="font-display text-lg font-bold text-neutral-900">
-                Oyemat House, Alhaja Kudirat Adenekan Rd, Isolo
+                Oyemat House, 45 Kudirat Adenekan Rd, Isolo, Lagos
               </h3>
+              <p className="text-xs text-neutral-500 mt-0.5">
+                Opposite Bokku Mart, Canoe Bus/Stop
+              </p>
             </div>
             
             <a
@@ -330,30 +320,38 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, onOpenBook
             </a>
           </div>
 
-          {/* Interactive map representation container */}
-          <div className="relative w-full h-80 sm:h-96 bg-neutral-100 overflow-hidden">
-            <iframe
-              title="Dynamic Auto & Tyre Centre Location Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.3150!3d6.5276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8e727918a0a9%3A0x6b64d0a7a3727cb!2sIsolo%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng"
-              className="w-full h-full border-0"
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            
-            {/* Overlay Workshop Pin Badge */}
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-neutral-200 shadow-md flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-xs">
-                DA
+          {/* Real Workshop Photo WA0039 & Map Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="relative h-72 sm:h-96 bg-neutral-900 overflow-hidden">
+              <img
+                src={companyImages.contact.cdnUrl}
+                alt={companyImages.contact.alt}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src !== window.location.origin + companyImages.contact.localPath) {
+                    target.src = companyImages.contact.localPath;
+                  }
+                }}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                <div className="text-white space-y-1">
+                  <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">Workshop Exterior</span>
+                  <p className="text-sm font-semibold text-slate-100">Dynamic Auto &amp; Tyre Centre Isolo Facility Entrance</p>
+                </div>
               </div>
-              <div className="text-left">
-                <span className="text-xs font-bold text-neutral-900 block">
-                  Dynamic Auto &amp; Tyre Centre
-                </span>
-                <span className="text-[11px] text-neutral-500 block">
-                  Oyemat House, 45 Alhaja Kudirat Adenekan Rd, Isolo
-                </span>
-              </div>
+            </div>
+
+            <div className="relative w-full h-72 sm:h-96 bg-neutral-100 overflow-hidden">
+              <iframe
+                title="Dynamic Auto & Tyre Centre Location Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.3150!3d6.5276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8e727918a0a9%3A0x6b64d0a7a3727cb!2sIsolo%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng"
+                className="w-full h-full border-0"
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
 

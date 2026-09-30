@@ -22,6 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'services', label: 'Services' },
     { id: 'knowledge', label: 'Knowledge Hub' },
     { id: 'loyalty', label: 'Loyalty Program' },
+    { id: 'partners', label: 'Partners' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -77,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
             <div className="hidden sm:block">
               <span className="block font-display text-lg sm:text-xl font-bold tracking-tight text-blue-950 leading-tight">
-                Dynamic Auto
+                Dynamic Automotive
               </span>
               <span className="block text-xs uppercase tracking-wider text-orange-600 font-bold">
                 &amp; Tyre Centre

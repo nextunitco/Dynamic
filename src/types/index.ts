@@ -1,15 +1,26 @@
-export type PageId = 'home' | 'about' | 'services' | 'knowledge' | 'loyalty' | 'contact' | 'book';
+export type PageId = 
+  | 'home' 
+  | 'about' 
+  | 'services' 
+  | 'driver-training'
+  | 'fleet'
+  | 'knowledge' 
+  | 'loyalty' 
+  | 'partners' 
+  | 'contact' 
+  | 'book';
 
 export interface ServiceItem {
   id: string;
   title: string;
-  category: 'servicing' | 'tyres' | 'brakes' | 'diagnostics' | 'battery' | 'ac' | 'suspension' | 'mot';
+  category: 'servicing' | 'tyres' | 'brakes' | 'diagnostics' | 'battery' | 'ac' | 'suspension' | 'mot' | 'fleet';
   shortDesc: string;
   iconName: string;
   fullDesc: string;
   features: string[];
   recommendedInterval?: string;
   pricingNote?: string;
+  image?: string;
 }
 
 export interface KnowledgeArticle {
@@ -45,4 +56,13 @@ export interface LoyaltyMember {
   tier: string;
   joinedDate: string;
   pointsBalance: number;
+}
+
+export interface PartnerItem {
+  id: string;
+  name: string;
+  type: 'partner' | 'corporate';
+  description?: string;
+  assetUrl: string;
+  fallbackAsset?: string;
 }

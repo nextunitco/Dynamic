@@ -142,6 +142,20 @@ export const SERVICES_LIST: ServiceItem[] = [
       'Combined Service + MOT cost-saving packages',
       'Automated renewal reminder so your certificate never lapses'
     ]
+  },
+  {
+    id: 'fleet-services',
+    title: 'Fleet Services',
+    category: 'fleet',
+    shortDesc: 'Turnkey vehicle maintenance retainers, automated scheduling, and priority support for corporate organisations.',
+    iconName: 'Truck',
+    fullDesc: 'Customised automotive management solutions designed for commercial organisations, financial institutions, and business fleets. We provide priority workshop turnaround, 30-day corporate billing, and comprehensive health monitoring.',
+    features: [
+      'Scheduled preventive maintenance retainers',
+      'Itemized corporate billing & monthly statements',
+      'Dedicated service bay priority allocation',
+      'Mobile tyre maintenance and on-site inspection'
+    ]
   }
 ];
 

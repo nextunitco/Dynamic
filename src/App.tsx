@@ -18,6 +18,9 @@ import { BookServicePage } from './pages/BookServicePage';
 import { LoyaltyPage } from './pages/LoyaltyPage';
 import { KnowledgeHubPage } from './pages/KnowledgeHubPage';
 import { ContactPage } from './pages/ContactPage';
+import { PartnersPage } from './pages/PartnersPage';
+import { DriverTrainingPage } from './pages/DriverTrainingPage';
+import { FleetPage } from './pages/FleetPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -111,6 +114,27 @@ export default function App() {
 
         {currentPage === 'contact' && (
           <ContactPage
+            onNavigate={handleNavigate}
+            onOpenBooking={handleOpenBooking}
+          />
+        )}
+
+        {currentPage === 'partners' && (
+          <PartnersPage
+            onNavigate={handleNavigate}
+            onOpenBooking={handleOpenBooking}
+          />
+        )}
+
+        {currentPage === 'driver-training' && (
+          <DriverTrainingPage
+            onNavigate={handleNavigate}
+            onOpenBooking={handleOpenBooking}
+          />
+        )}
+
+        {currentPage === 'fleet' && (
+          <FleetPage
             onNavigate={handleNavigate}
             onOpenBooking={handleOpenBooking}
           />

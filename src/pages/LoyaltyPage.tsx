@@ -15,6 +15,12 @@ import {
 } from 'lucide-react';
 import { PageId, LoyaltyMember } from '../types';
 import { FAQS_DATA } from '../data/faqsData';
+import { PageHeader } from '../components/PageHeader';
+import { 
+  companyImages, 
+  LOYALTY_REWARD_PERCENTAGE, 
+  LOYALTY_REWARD_DISPLAY_RATE 
+} from '../data/companyImages';
 
 interface LoyaltyPageProps {
   onNavigate: (page: PageId) => void;
@@ -22,9 +28,9 @@ interface LoyaltyPageProps {
 }
 
 export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate, onOpenBooking }) => {
-  // Interactive Reward Calculator
+  // Interactive Reward Calculator utilizing central configuration
   const [calcSpend, setCalcSpend] = useState<number>(50000);
-  const loyaltyEarnRate = 0.05; // 5% return
+  const loyaltyEarnRate = LOYALTY_REWARD_PERCENTAGE; // Configurable: 5% default (or 10% when confirmed)
   const calculatedReward = Math.round(calcSpend * loyaltyEarnRate);
 
   // Join form state
@@ -105,25 +111,22 @@ export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate, onOpenBook
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-20">
+    <div className="space-y-16 sm:space-y-24 pb-20 bg-neutral-50">
       
-      {/* 1. Hero */}
-      <section className="bg-blue-950 text-white py-16 sm:py-20 border-b border-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-600/20 text-orange-400 border border-orange-500/30 rounded-full text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Dynamic Auto Loyalty Club</span>
-            </div>
-            <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-              Rewarding You for Every Visit.
-            </h1>
-            <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal">
-              Automotive care should be an investment that pays you back. Earn 5% loyalty value every time your vehicle enters our bays and redeem your balance seamlessly.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* 1. Header with Real WA0036 Company Image */}
+      <PageHeader
+        title="Dynamic Auto Loyalty Club"
+        subtitle={`Rewarding you for every visit. Earn ${LOYALTY_REWARD_DISPLAY_RATE} value on eligible vehicle servicing, tyres, and mechanical repairs, and redeem your cash credit effortlessly on future invoices.`}
+        badge={`Earn ${LOYALTY_REWARD_DISPLAY_RATE} Value Back`}
+        image={companyImages.loyalty}
+        breadcrumbs={[{ label: 'Loyalty Program' }]}
+        onNavigate={onNavigate}
+        ctaText="Enroll & Claim ₦1,000 Welcome Bonus"
+        onCtaClick={() => {
+          const el = document.getElementById('enrollment-form');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+      />
 
       {/* 2. Clear Loyalty System Explanation & Examples */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -288,7 +291,7 @@ export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate, onOpenBook
       </section>
 
       {/* 4. Join Now Form & Digital Card Preview */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="enrollment-form" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl border border-neutral-200 shadow-md p-6 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-6 space-y-4">

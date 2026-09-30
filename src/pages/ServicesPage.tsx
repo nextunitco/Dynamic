@@ -8,16 +8,21 @@ import {
   Wind, 
   Activity, 
   FileCheck, 
+  Truck,
   ArrowRight, 
   CheckCircle2, 
   Calendar,
   AlertTriangle,
   Info,
-  Layers,
+  Clock,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  ShieldCheck,
+  Building2,
+  Phone
 } from 'lucide-react';
 import { PageId, ServiceItem } from '../types';
+import { PageHeader } from '../components/PageHeader';
 import { 
   SERVICES_LIST, 
   SERVICE_INTERVALS, 
@@ -28,8 +33,10 @@ import {
   SUSPENSION_WARNING_SIGNS, 
   AIR_CON_PRICING 
 } from '../data/servicesData';
-
-import diagImage from '../assets/images/diagnostic_engine_tech_1790777333107.jpg';
+import { 
+  companyImages, 
+  corporateClientAssets 
+} from '../data/companyImages';
 
 interface ServicesPageProps {
   onNavigate: (page: PageId) => void;
@@ -37,7 +44,17 @@ interface ServicesPageProps {
   onOpenBooking: (prefillService?: string) => void;
 }
 
-type ServiceTab = 'all' | 'maintenance' | 'tyres' | 'brakes' | 'diagnostics' | 'battery' | 'ac' | 'suspension' | 'mot';
+type ServiceTab = 
+  | 'all' 
+  | 'maintenance' 
+  | 'tyres' 
+  | 'brakes' 
+  | 'diagnostics' 
+  | 'battery' 
+  | 'ac' 
+  | 'suspension' 
+  | 'mot'
+  | 'fleet';
 
 export const ServicesPage: React.FC<ServicesPageProps> = ({
   onNavigate,
@@ -56,46 +73,44 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
     { id: 'ac', label: 'Air Conditioning' },
     { id: 'suspension', label: 'Suspension & Shocks' },
     { id: 'mot', label: 'MOT Roadworthiness' },
+    { id: 'fleet', label: 'Fleet Services' },
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-20">
+    <div className="space-y-16 sm:space-y-24 pb-20 bg-neutral-50">
       
-      {/* 1. Header Banner */}
-      <section className="bg-blue-950 text-white py-16 sm:py-20 border-b border-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-wider text-orange-400 block">
-              Automotive Engineering Excellence
-            </span>
-            <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-              Professional Vehicle Servicing &amp; Maintenance
-            </h1>
-            <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal">
-              Organized into specialized workshop disciplines. From routine interval oil flushes and tyre fitting to dealer-level diagnostics with Bosch, Launch and Autel platforms.
-            </p>
-          </div>
+      {/* 1. Header with Real WA0044 Company Image */}
+      <PageHeader
+        title="Comprehensive Automotive Engineering & Workshop Services"
+        subtitle="Organized into specialized workshop disciplines. From routine interval oil flushes and laser tyre fitting to dealer-level computerized diagnostics with Bosch and Autel platforms."
+        badge="Multi-Bay Workshop · Isolo, Lagos"
+        image={companyImages.services}
+        breadcrumbs={[{ label: 'Services' }]}
+        onNavigate={onNavigate}
+        ctaText="Book a Service Appointment"
+        onCtaClick={() => onOpenBooking()}
+      />
 
-          {/* Interactive Category Segmented Tabs */}
-          <div className="mt-10 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {filterTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-orange-600 text-white font-semibold shadow-xs'
-                    : 'bg-blue-900/80 text-blue-100 hover:bg-blue-800 hover:text-white'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+      {/* Filter Tabs Bar */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white p-3 rounded-2xl border border-neutral-200/90 shadow-2xs flex items-center gap-2 overflow-x-auto scrollbar-none">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-2.5 text-xs sm:text-sm font-medium rounded-xl transition-all whitespace-nowrap cursor-pointer ${
+                activeTab === tab.id
+                  ? 'bg-orange-600 text-white font-semibold shadow-xs'
+                  : 'bg-neutral-50 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 border border-neutral-200/50'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </section>
 
-      {/* 2. SECTION: VEHICLE REPAIRS & MAINTENANCE + INTERVALS TABLE */}
+      {/* 2. SECTION: VEHICLE REPAIRS & MAINTENANCE (Using Real WA0033 Image) */}
       {(activeTab === 'all' || activeTab === 'maintenance') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -106,21 +121,78 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
               Vehicle Repairs &amp; Scheduled Maintenance
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
-              Routine maintenance includes Engine Oil &amp; Filter Change, Vehicle Diagnostics, Engine Repairs, Electrical Services, Suspension &amp; Shock Absorbers, Brake Services, Battery Services, and Air Conditioning.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Routine maintenance includes Engine Oil &amp; Filter Change, Vehicle Diagnostics, Mechanical &amp; Engine Repairs, Electrical Services, Suspension &amp; Shock Absorbers, Brake Services, Battery Services, and Air Conditioning.
             </p>
           </div>
 
-          {/* Interval Comparison Cards / Table Section */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="font-display text-lg font-bold text-neutral-900">
-                Service Interval Breakdown &amp; Comparison
+          {/* Section Hero Card with WA0033 */}
+          <div className="bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900">
+                Preventive Servicing &amp; Mechanical Longevity
               </h3>
-              <span className="text-xs text-neutral-500 font-medium hidden sm:inline">
-                Adhering to strict OEM tolerances
-              </span>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+                Scheduled servicing prevents premature cylinder bore scoring, bearing wear, and cooling failure. We adhere strictly to OEM fluid viscosities (synthetic 0W-20, 5W-30, 5W-40) and genuine OEM filters.
+              </p>
+              <div className="grid grid-cols-2 gap-3 pt-1 text-xs text-neutral-700">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>50-point mechanical safety checklist</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Synthetic oil &amp; filter flush</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Coolant &amp; brake fluid boil-point check</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Digital onboard service interval reset</span>
+                </div>
+              </div>
+              <div className="pt-3">
+                <button
+                  onClick={() => onOpenBooking('Vehicle Servicing')}
+                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition-colors shadow-xs cursor-pointer inline-flex items-center gap-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>Book Vehicle Service</span>
+                </button>
+              </div>
             </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+                <img
+                  src={companyImages.repairs.cdnUrl}
+                  alt={companyImages.repairs.alt}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== window.location.origin + companyImages.repairs.localPath) {
+                      target.src = companyImages.repairs.localPath;
+                    }
+                  }}
+                  className="w-full h-64 sm:h-72 object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                  <div className="text-white">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Service Bay</span>
+                    <p className="text-xs font-medium text-slate-200">Hydraulic lift inspection &amp; powertrain maintenance</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Interval Comparison Cards */}
+          <div className="space-y-4">
+            <h3 className="font-display text-lg font-bold text-neutral-900">
+              Service Interval Breakdown &amp; Comparison
+            </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {SERVICE_INTERVALS.map((item, idx) => (
@@ -143,7 +215,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
 
                     <div>
                       <h5 className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-2">
-                        Key Checkpoints &amp; Operations:
+                        Key Operations:
                       </h5>
                       <ul className="space-y-2 text-xs sm:text-sm text-neutral-700">
                         {item.highlights.map((h, i) => (
@@ -173,7 +245,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </section>
       )}
 
-      {/* 3. SECTION: TYRES & WHEEL SERVICES */}
+      {/* 3. SECTION: TYRES & WHEEL SERVICES (Using Real WA0035, WA0034, WA0046 Images) */}
       {(activeTab === 'all' || activeTab === 'tyres') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -184,9 +256,71 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
               Tyres &amp; Wheel Services
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
-              Complete tyre supply, digital laser mounting, wheel balancing, 4-wheel alignment, mobile tyre fitting, and seasonal storage.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Complete tyre supply, digital laser mounting, wheel balancing, 4-wheel computerized alignment, mobile tyre fitting, and tyre safety audits.
             </p>
+          </div>
+
+          {/* Section Hero Card with WA0035 */}
+          <div className="bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900">
+                Precision Tyre Fitting &amp; High-Speed Wheel Balancing
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+                Proper tyre mounting and balancing protects expensive suspension components, eliminates high-speed steering vibration, and optimizes braking performance on wet roads. We stock certified brand-new tyre inventory across all passenger and commercial sizes.
+              </p>
+              <div className="grid grid-cols-2 gap-3 pt-1 text-xs text-neutral-700">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Computerized wheel balancing</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Laser 4-wheel alignment</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Mobile tyre fitting dispatch</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Tread depth &amp; safety inspection</span>
+                </div>
+              </div>
+              <div className="pt-3">
+                <button
+                  onClick={() => onOpenBooking('Tyres & Wheels')}
+                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition-colors shadow-xs cursor-pointer inline-flex items-center gap-2"
+                >
+                  <Disc className="w-4 h-4" />
+                  <span>Book Tyre Service</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+                <img
+                  src={companyImages.tyres.cdnUrl}
+                  alt={companyImages.tyres.alt}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== window.location.origin + companyImages.tyres.localPath) {
+                      target.src = companyImages.tyres.localPath;
+                    }
+                  }}
+                  className="w-full h-64 sm:h-72 object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                  <div className="text-white">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Tyre Bay</span>
+                    <p className="text-xs font-medium text-slate-200">State-of-the-art rim clamp &amp; pneumatic fitting station</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Vehicle compatibility bar */}
@@ -206,10 +340,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             </div>
           </div>
 
-          {/* Tyre Categories Grid */}
-          <div>
-            <h3 className="font-display text-lg font-bold text-neutral-900 mb-4">
-              Comprehensive Tyre Categories Available
+          {/* 8 Tyre Categories Grid */}
+          <div className="space-y-4">
+            <h3 className="font-display text-lg font-bold text-neutral-900">
+              Tyre Categories In Stock
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {TYRE_CATEGORIES.map((cat, i) => (
@@ -226,20 +360,39 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             </div>
           </div>
 
-          {/* Wheel Alignment & Balancing CTA Callout */}
-          <div className="bg-blue-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-blue-900">
-            <div className="space-y-1">
-              <h4 className="font-display text-lg font-bold text-white">Need Precision Wheel Alignment or Mobile Fitting?</h4>
-              <p className="text-xs sm:text-sm text-blue-100/80">
-                Eliminate steering pull, tyre shoulder scrubbing, and vibration at motorway speeds.
+          {/* Supporting Workshop Image WA0046 (Wheel Balancing) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-white p-6 sm:p-8 rounded-2xl border border-neutral-200/90 shadow-xs">
+            <div className="space-y-3">
+              <span className="text-xs font-bold uppercase text-orange-600 tracking-wider">
+                Precision Wheel Balancing &amp; 3D Laser Alignment
+              </span>
+              <h4 className="font-display text-xl font-bold text-neutral-900">
+                Eliminate Steering Shudder &amp; Premature Shoulder Wear
+              </h4>
+              <p className="text-xs text-neutral-600 leading-relaxed">
+                Even a minor 10g weight imbalance across wheel rims generates rhythmic shudder at 80 km/h and destroys steering rack seals. Our dynamic spin balancers restore glass-smooth highway stability.
               </p>
+              <button
+                onClick={() => onOpenBooking('Wheel Alignment & Tyres')}
+                className="mt-2 px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+              >
+                Book Alignment &amp; Balancing
+              </button>
             </div>
-            <button
-              onClick={() => onOpenBooking('Wheel Alignment & Tyres')}
-              className="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors cursor-pointer shrink-0 shadow-xs"
-            >
-              Book Alignment &amp; Tyres
-            </button>
+            <div className="rounded-xl overflow-hidden border border-neutral-200 h-56">
+              <img
+                src={companyImages.wheelBalancing.cdnUrl}
+                alt={companyImages.wheelBalancing.alt}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src !== window.location.origin + companyImages.wheelBalancing.localPath) {
+                    target.src = companyImages.wheelBalancing.localPath;
+                  }
+                }}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
 
         </section>
@@ -254,10 +407,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               Category 03
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
-              Brake Checks &amp; Replacement
+              Brake Checks, Pads, Discs &amp; Hydraulics
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
-              Precision inspection of pads, discs, hydraulic calipers, brake shoes, master cylinders, and brake fluid boiling point measurement.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Your first line of active defence. Comprehensive brake pad friction evaluation, rotor thickness measurement, boiling-point fluid diagnostics, and ABS caliper rebuilds.
             </p>
           </div>
 
@@ -268,10 +421,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-neutral-900">
-                  Common Brake Warning Signs You Must Not Ignore
+                  Critical Brake Warning Signs: Never Delay an Inspection
                 </h3>
                 <p className="text-xs text-neutral-600">
-                  Braking degradation often develops progressively. If you observe any of the following symptoms, arrange an inspection immediately.
+                  If your vehicle exhibits any of the following symptoms, schedule a brake check immediately.
                 </p>
               </div>
             </div>
@@ -298,7 +451,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 onClick={() => onOpenBooking('Brake Check')}
                 className="w-full sm:w-auto px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap shadow-xs"
               >
-                Book a Free Brake Check
+                Book a Brake Check
               </button>
             </div>
           </div>
@@ -306,7 +459,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </section>
       )}
 
-      {/* 5. SECTION: DIAGNOSTICS */}
+      {/* 5. SECTION: DIAGNOSTICS (Using Real WA0045 Image) */}
       {(activeTab === 'all' || activeTab === 'diagnostics') && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -315,73 +468,78 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               Category 04
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
-              Vehicle Computer Diagnostics
+              Vehicle Computer Diagnostics &amp; ECU Analysis
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
-              Dealer-grade OBD2 scanning, sensor graphing, ECU fault code tracing, and electronic calibrations.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Dealer-grade OBD2 bi-directional scanning, live sensor graphing, ECU fault code tracing, and electronic sensor recalibration.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white p-6 sm:p-10 rounded-2xl border border-neutral-200/90 shadow-xs">
             
             <div className="lg:col-span-7 space-y-4">
-              <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
-                Modern automobiles have between 20 and 80 interconnected computer control modules. Guesswork repairs lead to expensive unnecessary part swaps. At Dynamic Auto &amp; Tyre Centre, our certified diagnostic technicians isolate electrical and sensor anomalies with pin-point accuracy.
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900">
+                Pin-Point Troubleshooting Without Part-Swapping Guesswork
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed font-normal">
+                Modern automobiles have between 20 and 80 interconnected computer control modules. Guesswork repairs lead to expensive unnecessary part swaps. At Dynamic Automotive &amp; Tyre Centre, our certified diagnostic technicians isolate electrical and sensor anomalies with pin-point accuracy using updated Bosch, Autel, and Launch suites.
               </p>
 
-              <div className="space-y-2.5 pt-2">
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700">
+              <div className="space-y-2 pt-1 text-xs text-neutral-700">
+                <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                   <span><strong>OBD2 Diagnostics &amp; Live Data:</strong> Real-time fuel trim, oxygen sensor, manifold pressure and boost graphs.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700">
+                <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                   <span><strong>Engine Warning Lights &amp; ECU Fault Codes:</strong> Powertrain, transmission and CAN-bus communication error tracing.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700">
+                <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                   <span><strong>Brake System &amp; ABS Faults:</strong> Wheel speed sensors, yaw rate sensors, and electronic stability control faults.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700">
+                <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                   <span><strong>Service Light Resets &amp; Electronic Handbrakes:</strong> Service interval reset and rear electronic parking brake calibration.</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                  <span><strong>Headlamp &amp; Steering Sensor Calibration:</strong> SAS angle calibration and adaptive LED headlamp leveling.</span>
-                </div>
               </div>
 
-              {/* Equipment Highlight Box */}
-              <div className="p-4 bg-blue-50/70 rounded-xl border border-blue-200 text-xs text-blue-900 space-y-1">
-                <strong className="block text-blue-950 font-semibold">
-                  Professional Equipment In Use:
-                </strong>
-                <p>
-                  Dynamic Auto &amp; Tyre Centre utilizes professional <strong>Launch</strong>, <strong>Autel</strong>, and <strong>Bosch</strong> diagnostic suites with updated OEM protocol software.
-                </p>
+              <div className="p-3.5 bg-blue-50/70 rounded-xl border border-blue-200 text-xs text-blue-900">
+                <strong>Equipment in use:</strong> Bosch Master Diagnostic System, Autel MaxiSys Pro, and Launch X-431 bi-directional scan tools.
               </div>
 
               <div className="pt-2">
                 <button
                   onClick={() => onOpenBooking('Diagnostics')}
-                  className="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors cursor-pointer shadow-xs"
+                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors cursor-pointer shadow-xs inline-flex items-center gap-2"
                 >
-                  Book Diagnostics
+                  <Cpu className="w-4 h-4" />
+                  <span>Book Diagnostics</span>
                 </button>
               </div>
             </div>
 
-            {/* Diagnostic Photo */}
+            {/* Diagnostic Photo WA0045 */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md aspect-4/3">
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
                 <img
-                  src={diagImage}
-                  alt="Technician operating diagnostic scanner on modern engine"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
+                  src={companyImages.diagnostics.cdnUrl}
+                  alt={companyImages.diagnostics.alt}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== window.location.origin + companyImages.diagnostics.localPath) {
+                      target.src = companyImages.diagnostics.localPath;
+                    }
+                  }}
+                  className="w-full h-72 sm:h-80 object-cover"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                  <div className="text-white">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Diagnostic Suite</span>
+                    <p className="text-xs font-medium text-slate-200">Electronic system interrogation &amp; live sensor graphing</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -401,22 +559,22 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
               MOT Roadworthiness Test
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
-              Statutory inspection of vehicular safety, emissions compliance, braking balance, and chassis integrity.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Statutory inspection of vehicular roadworthiness, emissions compliance, braking balance, and chassis integrity.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-xs">
             
             <div className="lg:col-span-8 space-y-4">
               <h3 className="font-display text-xl font-bold text-neutral-900">
                 Ensure Your Vehicle Is Legally Certified &amp; Mechanically Roadworthy
               </h3>
               <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
-                Maintaining a valid roadworthiness certificate is not just a regulatory obligation on Nigerian roadways—it provides peace of mind that critical mechanical systems, steering link play, emissions thresholds, and lighting circuits are functioning properly.
+                Maintaining a valid roadworthiness certificate provides peace of mind that critical mechanical systems, steering link play, emissions thresholds, and lighting circuits are functioning properly to statutory standards.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-neutral-700">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs text-neutral-700">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
                   <span>Check when your vehicle's MOT is due</span>
@@ -438,9 +596,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               <div className="pt-2">
                 <button
                   onClick={() => onOpenBooking('MOT Roadworthiness Test')}
-                  className="px-6 py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs"
+                  className="px-6 py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs inline-flex items-center gap-2"
                 >
-                  Book MOT
+                  <FileCheck className="w-4 h-4 text-orange-400" />
+                  <span>Book a Roadworthiness Test</span>
                 </button>
               </div>
             </div>
@@ -471,14 +630,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
               Battery Health Checks &amp; Replacement
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
               Digital Cold Cranking Amp testing, alternator output evaluation, precision terminal cleaning, and environmentally safe recycling.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div className="bg-white p-6 rounded-2xl border border-neutral-200/90 space-y-4">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-neutral-200/90 space-y-4 shadow-xs">
               <h3 className="font-display text-base font-bold text-neutral-900">
                 Complete Battery Service Scope:
               </h3>
@@ -500,9 +658,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                   <span><strong>Old Battery Disposal:</strong> Environmentally responsible hazardous lead-acid recycling.</span>
                 </li>
               </ul>
+              <div className="pt-2">
+                <button
+                  onClick={() => onOpenBooking('Battery Services')}
+                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs inline-flex items-center gap-2"
+                >
+                  <Zap className="w-4 h-4" />
+                  <span>Book Battery Service</span>
+                </button>
+              </div>
             </div>
 
-            <div className="bg-blue-50/40 p-6 rounded-2xl border border-blue-100 space-y-4">
+            <div className="bg-blue-50/40 p-6 sm:p-8 rounded-2xl border border-blue-100 space-y-4">
               <h3 className="font-display text-base font-bold text-neutral-900">
                 Common Battery Warning Signs:
               </h3>
@@ -518,17 +685,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                   </div>
                 ))}
               </div>
-
-              <div className="pt-2">
-                <button
-                  onClick={() => onOpenBooking('Battery Check')}
-                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs"
-                >
-                  Check My Battery
-                </button>
-              </div>
             </div>
-
           </div>
 
         </section>
@@ -545,7 +702,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
               Air Conditioning Re-Gas &amp; Servicing
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
               Restore icy cabin cooling with precision vacuum drying, leak testing, compressor lubricating oil replenishment, and certified refrigerant charging.
             </p>
           </div>
@@ -591,16 +748,16 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 <div className="pt-6 border-t border-neutral-100 mt-6">
                   <button
                     onClick={() => onOpenBooking(`Air Conditioning (${ac.type})`)}
-                    className="w-full py-2.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-xs"
+                    className="w-full py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-xs inline-flex items-center justify-center gap-2"
                   >
-                    Book {ac.type} Service
+                    <Wind className="w-4 h-4" />
+                    <span>Book AC Service ({ac.type})</span>
                   </button>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Technical Important Note Box */}
           <div className="p-4 bg-orange-50/70 rounded-xl border border-orange-200 text-xs text-neutral-900 flex items-start gap-3">
             <Info className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
             <div className="space-y-1">
@@ -625,8 +782,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
               Suspension &amp; Shock Absorbers
             </h2>
-            <p className="text-sm text-neutral-600 mt-1 max-w-3xl">
-              Protect your chassis, preserve tyre life, and restore responsive handling over bumps with expert strut renewals and suspension alignment.
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Protect your chassis, preserve tyre life, and restore responsive handling over potholes with expert strut renewals and suspension alignment.
             </p>
           </div>
 
@@ -657,9 +814,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               <div className="pt-2">
                 <button
                   onClick={() => onOpenBooking('Suspension & Shock Absorbers')}
-                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs"
+                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer shadow-xs inline-flex items-center gap-2"
                 >
-                  Book Suspension Check
+                  <Activity className="w-4 h-4" />
+                  <span>Book Suspension Service</span>
                 </button>
               </div>
             </div>
@@ -682,9 +840,127 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </section>
       )}
 
+      {/* 10. SECTION: FLEET SERVICES (Using Real WA0042 Image) */}
+      {(activeTab === 'all' || activeTab === 'fleet') && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          
+          <div className="border-b border-neutral-200 pb-5">
+            <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block mb-1">
+              Category 09
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+              Corporate Fleet Services &amp; Commercial Maintenance
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 mt-1 max-w-3xl font-normal">
+              Bespoke automotive maintenance contracts for companies, banks, utility operators, and institutional vehicle fleets.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-10 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-900 rounded-full text-xs font-semibold border border-blue-100">
+                <Truck className="w-3.5 h-3.5 text-orange-600" />
+                <span>Enterprise SLA &amp; Fleet Management</span>
+              </div>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900">
+                Turnkey Maintenance for Commercial Fleets
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+                Avoid operational bottlenecks and costly unexpected roadside breakdowns. We provide priority bay scheduling, monthly consolidate billing, OEM replacement parts, and dedicated customer account managers.
+              </p>
+              <div className="grid grid-cols-2 gap-3 pt-1 text-xs text-neutral-700">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>30-day corporate billing terms</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Dedicated commercial vehicle bays</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Mobile fleet tyre replacement</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Automated service interval logging</span>
+                </div>
+              </div>
+              <div className="pt-3 flex flex-wrap gap-3">
+                <button
+                  onClick={() => onNavigate('fleet')}
+                  className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition-colors shadow-xs cursor-pointer inline-flex items-center gap-2"
+                >
+                  <span>Talk to Our Fleet Team</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => onNavigate('contact')}
+                  className="px-5 py-2.5 bg-neutral-900 hover:bg-neutral-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+                >
+                  Request Rate Card
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+                <img
+                  src={companyImages.fleet.cdnUrl}
+                  alt={companyImages.fleet.alt}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src !== window.location.origin + companyImages.fleet.localPath) {
+                      target.src = companyImages.fleet.localPath;
+                    }
+                  }}
+                  className="w-full h-64 sm:h-72 object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-5">
+                  <div className="text-white">
+                    <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block">Fleet Bay</span>
+                    <p className="text-xs font-medium text-slate-200">Commercial vans &amp; enterprise utility fleet maintenance</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Corporate Clients Logo Strip */}
+          <div className="space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">
+              Trusted by Leading Corporate Fleets:
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {corporateClientAssets.map((client) => (
+                <div
+                  key={client.id}
+                  className="p-3 bg-white rounded-xl border border-neutral-200 flex items-center justify-center text-center shadow-2xs h-20"
+                >
+                  <img
+                    src={client.cdnUrl}
+                    alt={client.name}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src !== window.location.origin + client.localPath) {
+                        target.src = client.localPath;
+                      }
+                    }}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </section>
+      )}
+
       {/* Global Booking Strip */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-blue-950 text-white p-8 sm:p-10 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 border border-blue-900">
+        <div className="bg-blue-950 text-white p-8 sm:p-10 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 border border-blue-900 shadow-sm">
           <div>
             <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
               Ready to Book Your Service?

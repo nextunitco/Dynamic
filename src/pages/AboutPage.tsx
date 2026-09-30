@@ -1,21 +1,20 @@
 import React from 'react';
+import { PageHeader } from '../components/PageHeader';
+import { companyImages } from '../data/companyImages';
+import { PageId } from '../types';
 import { 
   ShieldCheck, 
   Target, 
   Award, 
   Users, 
-  Sparkles, 
-  Clock, 
   Truck, 
-  CheckCircle, 
+  CheckCircle2, 
   ArrowRight, 
   Building2, 
-  FileText,
+  Wrench,
+  Sparkles,
   Phone
 } from 'lucide-react';
-import { PageId } from '../types';
-
-import fleetImage from '../assets/images/fleet_mobile_van_1790777346146.jpg';
 
 interface AboutPageProps {
   onNavigate: (page: PageId) => void;
@@ -25,121 +24,100 @@ interface AboutPageProps {
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking }) => {
   const values = [
     {
-      title: 'Quality',
-      desc: 'We never compromise on components or fluid grades, installing strictly genuine or OEM-spec parts that match factory tolerances.',
-      icon: Award
+      title: 'Professionalism',
+      desc: 'Uniformed, factory-trained technicians adhering strictly to engineering guidelines, torque specifications, and ethical automotive business practices.',
+      icon: Target
     },
     {
       title: 'Reliability',
-      desc: 'Accurate timelines, guaranteed workmanship, and dependable vehicles returned in optimal roadworthy condition every single visit.',
+      desc: 'Accurate turnaround timelines, guaranteed parts integrity, and dependable vehicles returned in optimal roadworthy condition after every service visit.',
       icon: ShieldCheck
     },
     {
       title: 'Customer Service',
-      desc: 'Clear communication without technical jargon, upfront estimates with zero surprise billing, and respectful transparent advice.',
+      desc: 'Clear communication without technical jargon, upfront estimates with zero unexpected billing surprises, and respectful, transparent consultation.',
       icon: Users
     },
     {
-      title: 'Professionalism',
-      desc: 'Certified master technicians, clean uniform presentation, modern tooling, and an orderly workshop that respects your investment.',
-      icon: Target
-    },
-    {
-      title: 'Safety',
-      desc: 'Your safety on Nigerian expressways is our first imperative. Every vehicle passes rigorous safety inspections before handover.',
-      icon: CheckCircle
-    },
-    {
-      title: 'Continuous Improvement',
-      desc: 'Ongoing training on emerging hybrid, electric vehicle, and computer multiplex architectures to stay ahead of automotive engineering.',
-      icon: Sparkles
+      title: 'Technical Expertise',
+      desc: 'Advanced computerized diagnostics with Bosch and Autel platforms, continuous technician training on modern CAN-bus architectures, and precision tooling.',
+      icon: Wrench
     }
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-20">
+    <div className="space-y-16 sm:space-y-24 pb-20 bg-neutral-50">
       
-      {/* 1. Header Hero */}
-      <section className="bg-blue-950 text-white py-16 sm:py-20 border-b border-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-wider text-orange-400 block">
-              About Dynamic Auto &amp; Tyre Centre
-            </span>
-            <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-              Raising Standards in Automotive Servicing &amp; Fast-Fit Maintenance.
-            </h1>
-            <p className="text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
-              Founded in 2021 in Isolo, Lagos, Dynamic Auto &amp; Tyre Centre combines skilled engineering, diagnostic technology, and genuine customer care to keep personal and commercial vehicles moving safely.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* 1. Header with Real WA0043 Company Image */}
+      <PageHeader
+        title="About Dynamic Automotive & Tyre Centre"
+        subtitle="Established in 2021 in Isolo, Lagos. Delivering honest, dealer-standard automotive servicing, tyres, diagnostics and commercial fleet retainers you can depend on."
+        badge="RC No: 3332447 · Established in 2021"
+        image={companyImages.about}
+        breadcrumbs={[{ label: 'About Us' }]}
+        onNavigate={onNavigate}
+        ctaText="Book a Workshop Inspection"
+        onCtaClick={onOpenBooking}
+      />
 
-      {/* 2. Our Story */}
+      {/* 2. Our Story Section (Using Real Supporting Image WA0043 & WA0040) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="bg-white rounded-2xl border border-neutral-200/90 p-8 sm:p-12 shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-7 space-y-5">
             <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
-              Our Story
+              Our Story &amp; Heritage
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-950 tracking-tight leading-tight">
-              A Modern Workshop Built on Trust &amp; Engineering Precision
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">
+              Raising the Benchmark for Automotive Care in Lagos
             </h2>
-            <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-              Dynamic Auto &amp; Tyre Centre launched in 2021 and is focused on raising service standards in the fast-fit automotive industry. Frustrated by the prevalence of guess-work mechanics, substandard fluids, and unpredictable billing in the local automotive market, we designed an automotive centre built on European-standard diagnostic procedures and genuine customer integrity.
-            </p>
-            <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-              From day one, our strategic focus has been centered across six foundational pillars:
-            </p>
+            <div className="space-y-4 text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+              <p>
+                Dynamic Automotive &amp; Tyre Centre (RC No: 3332447) was established in 2021 with a clear mandate: to eliminate the ambiguity, guesswork, and unreliable parts that too frequently characterize automotive repairs in Nigeria.
+              </p>
+              <p>
+                Operating from our multi-bay engineering workshop on Kudirat Adenekan Road in Isolo, Lagos (Opposite Bokku Mart, Canoe Bus/Stop), our facility was purposefully configured to bridge the gap between expensive franchise dealerships and informal roadside mechanic bays.
+              </p>
+              <p>
+                Over the past several years, we have grown from a local fast-fit center into a trusted automotive partner for individual vehicle owners, executive car enthusiasts, and leading corporate fleets including banks, insurance institutions, and consumer goods manufacturers.
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100">
-                <strong className="text-sm font-semibold text-blue-950 block mb-1">Vehicle Maintenance</strong>
-                <span className="text-xs text-slate-600">Full, interim and warranty-safe scheduled servicing.</span>
+            <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-neutral-100">
+              <div className="space-y-1">
+                <span className="font-display text-2xl font-bold text-orange-600 tabular-nums">2021</span>
+                <span className="text-xs text-neutral-500 block">Year Established</span>
               </div>
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100">
-                <strong className="text-sm font-semibold text-blue-950 block mb-1">Tyre Services</strong>
-                <span className="text-xs text-slate-600">Precision laser alignment, balancing, and premium fitment.</span>
+              <div className="space-y-1">
+                <span className="font-display text-2xl font-bold text-blue-900 tabular-nums">50+</span>
+                <span className="text-xs text-neutral-500 block">Safety Checkpoints</span>
               </div>
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100">
-                <strong className="text-sm font-semibold text-blue-950 block mb-1">Fleet Services</strong>
-                <span className="text-xs text-slate-600">Proactive corporate maintenance minimizing business downtime.</span>
-              </div>
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100">
-                <strong className="text-sm font-semibold text-blue-950 block mb-1">Customer Service</strong>
-                <span className="text-xs text-slate-600">Transparent advisory, detailed breakdowns, and comfort lounge.</span>
-              </div>
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100">
-                <strong className="text-sm font-semibold text-blue-950 block mb-1">Technology</strong>
-                <span className="text-xs text-slate-600">Bosch, Autel and Launch digital diagnostic platforms.</span>
-              </div>
-              <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100">
-                <strong className="text-sm font-semibold text-blue-950 block mb-1">Skilled Technicians</strong>
-                <span className="text-xs text-slate-600">Regular training across modern Asian, European, and American platforms.</span>
+              <div className="space-y-1">
+                <span className="font-display text-2xl font-bold text-emerald-700 tabular-nums">100%</span>
+                <span className="text-xs text-neutral-500 block">Verified OEM Parts</span>
               </div>
             </div>
           </div>
 
-          {/* Right Fleet / Facility imagery */}
-          <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-slate-100 aspect-16/10">
+          {/* Supporting Image: WA0040 (Workshop & Technical Expertise) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
               <img
-                src={fleetImage}
-                alt="Dynamic Auto & Tyre Centre mobile fleet maintenance service"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+                src={companyImages.teamWorkshop.cdnUrl}
+                alt="Dynamic Automotive technical team and workshop engineering"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src !== window.location.origin + companyImages.teamWorkshop.localPath) {
+                    target.src = companyImages.teamWorkshop.localPath;
+                  }
+                }}
+                className="w-full h-80 sm:h-96 object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex items-end p-6">
                 <div className="text-white space-y-1">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                    Workshop &amp; On-Site Support
-                  </span>
-                  <p className="text-sm font-medium">
-                    Fully equipped mobile units serving executive and commercial clients across Lagos
-                  </p>
+                  <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">Engineering Culture</span>
+                  <p className="text-xs font-semibold text-slate-100">Certified Diagnostic Technicians &amp; Mechanical Specialists</p>
                 </div>
               </div>
             </div>
@@ -148,54 +126,63 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
         </div>
       </section>
 
-      {/* 3. Our Mission */}
-      <section className="bg-blue-50/40 py-16 border-y border-blue-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-          <div className="w-12 h-12 rounded-xl bg-orange-600 text-white mx-auto flex items-center justify-center shadow-xs">
-            <Target className="w-6 h-6" />
+      {/* 3. Mission & Strategic Vision */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-2xl border border-neutral-200/90 p-8 sm:p-10 space-y-4 shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+              <Target className="w-5 h-5" />
+            </div>
+            <h3 className="font-display text-xl font-bold text-neutral-900">
+              Our Mission
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+              To deliver dependable, transparent, and technically superior automotive services that enhance vehicle safety, preserve asset resale values, and minimize operational downtime for everyday drivers and enterprise fleets across Nigeria.
+            </p>
           </div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
-            Our Mission
-          </span>
-          <h2 className="font-display text-2xl sm:text-4xl font-bold text-blue-950 tracking-tight leading-tight">
-            "To provide reliable, convenient and professional automotive services that give drivers and businesses complete confidence on every journey."
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            We are dedicated to eliminating roadside breakdowns through rigorous preventive checks, using verifiable data rather than speculation, and treating every client's vehicle with uncompromising technical care.
-          </p>
+
+          <div className="bg-white rounded-2xl border border-neutral-200/90 p-8 sm:p-10 space-y-4 shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-900 flex items-center justify-center">
+              <Award className="w-5 h-5" />
+            </div>
+            <h3 className="font-display text-xl font-bold text-neutral-900">
+              Our Vision
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+              To be West Africa’s most trusted automotive engineering and tyre center, renowned for diagnostic accuracy, customer-first transparency, and institutional fleet excellence.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 4. Our Values */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+      {/* 4. Core Values (Professionalism, Reliability, Customer Service, Technical Expertise) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 block">
-            Core Principles
+            Our Guiding Principles
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-950 tracking-tight">
-            Our Values
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+            The Pillars of Our Workshop Culture
           </h2>
-          <p className="text-sm text-slate-600">
-            The guiding ethics behind every bolt tightened, sensor calibrated, and customer advised.
+          <p className="text-xs sm:text-sm text-neutral-600 font-normal">
+            Every technician and customer service representative at Dynamic Auto is held to these core ethical commitments.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {values.map((v, i) => {
-            const Icon = v.icon;
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {values.map((val, idx) => {
+            const Icon = val.icon;
             return (
               <div 
-                key={i} 
-                className="bg-white p-6 rounded-xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all space-y-3"
+                key={idx} 
+                className="bg-white p-6 rounded-2xl border border-neutral-200/90 space-y-3 hover:border-orange-300 hover:shadow-xs transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-neutral-50 border border-neutral-100 text-orange-600 flex items-center justify-center">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-display text-base font-bold text-blue-950">
-                  {v.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  {v.desc}
+                <h3 className="font-display text-base font-bold text-neutral-900">{val.title}</h3>
+                <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                  {val.desc}
                 </p>
               </div>
             );
@@ -203,95 +190,33 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
         </div>
       </section>
 
-      {/* 5. Fleet Services */}
+      {/* 5. Customer-Focused Approach & Fleet Capability Callout */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-blue-950 text-white rounded-2xl p-8 sm:p-12 lg:p-14 border border-blue-900">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/20 text-orange-300 border border-orange-400/30 rounded-full text-xs font-semibold">
-                <Building2 className="w-3.5 h-3.5" />
-                <span>B2B &amp; Corporate Solutions</span>
-              </div>
-
-              <h2 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
-                Corporate Fleet Maintenance &amp; Servicing
-              </h2>
-
-              <p className="text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
-                Dynamic Auto &amp; Tyre Centre provides bespoke automotive services tailored for businesses, corporate transport departments, logistics companies, and corporate vehicle fleets.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-blue-100">
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-orange-400 shrink-0" />
-                  <span>Convenient locations in Isolo, Lagos</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-orange-400 shrink-0" />
-                  <span>Extended opening hours for rapid turnaround</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-orange-400 shrink-0" />
-                  <span>Trained multi-brand technicians</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-orange-400 shrink-0" />
-                  <span>Mobile tyre fitting direct to corporate depots</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-orange-400 shrink-0" />
-                  <span>Customer relationship management (CRM) &amp; logs</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-4 h-4 text-orange-400 shrink-0" />
-                  <span>Dedicated corporate billing &amp; credit facilities</span>
-                </div>
-              </div>
-
-              <div className="pt-4 flex flex-col sm:flex-row items-center gap-3">
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-semibold text-sm rounded-xl transition-all shadow-xs cursor-pointer"
-                >
-                  <FileText className="w-4 h-4" />
-                  <span>Fleet Enquiries</span>
-                </button>
-
-                <a
-                  href="tel:+2349126983699"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-900 hover:bg-blue-800 text-white font-semibold text-sm rounded-xl border border-blue-800 transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-orange-400" />
-                  <span>Call Fleet Desk: +234 912 698 3699</span>
-                </a>
-              </div>
-
-            </div>
-
-            <div className="lg:col-span-5 bg-blue-900/80 p-6 rounded-xl border border-blue-800 space-y-4">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                Fleet Service Highlights
-              </h3>
-              <p className="text-xs text-blue-100 leading-relaxed">
-                We assign a designated fleet coordinator to track inspection cycles, schedule preventive maintenance during off-peak hours, and provide full digital vehicle health passports.
-              </p>
-              <div className="pt-2 border-t border-blue-800 space-y-2 text-xs text-blue-300">
-                <div className="flex justify-between">
-                  <span>Average Fleet Turnaround</span>
-                  <span className="text-white font-semibold">Under 4 Hours</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Emergency Mobile Unit Response</span>
-                  <span className="text-white font-semibold">Lagos Mainland &amp; Island</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Warranty on Fleet Parts</span>
-                  <span className="text-white font-semibold">100% Guaranteed</span>
-                </div>
-              </div>
-            </div>
-
+        <div className="bg-blue-950 text-white rounded-2xl p-8 sm:p-12 border border-blue-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-sm">
+          <div className="space-y-3 max-w-2xl">
+            <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+              Corporate Retainers &amp; Customer Care
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
+              Looking for Reliable Fleet Support or Scheduled Servicing?
+            </h3>
+            <p className="text-xs sm:text-sm text-blue-100/80 leading-relaxed font-normal">
+              From our digital 5% loyalty cashback to dedicated commercial vehicle bays, we tailor our service to the exact needs of your household or company fleet.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
+            <button
+              onClick={() => onNavigate('fleet')}
+              className="px-6 py-3 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-semibold text-xs sm:text-sm rounded-xl transition-colors cursor-pointer text-center shadow-xs"
+            >
+              Explore Fleet Services
+            </button>
+            <button
+              onClick={onOpenBooking}
+              className="px-6 py-3 bg-blue-900/80 hover:bg-blue-900 text-white border border-blue-800 font-semibold text-xs sm:text-sm rounded-xl transition-colors cursor-pointer text-center"
+            >
+              Book Service Now
+            </button>
           </div>
         </div>
       </section>
